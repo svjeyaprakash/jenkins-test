@@ -14,4 +14,12 @@ node {
     stage 'Build'
     // Run the maven build
     sh "${mvnHome}/bin/mvn clean install"
+    parallel utest: {
+    		sh "${mvnHome}/bin/mvn test"
+	},
+	itest: {
+    		sh "${mvnHome}/bin/mvn clean verify"
+	}
+
+
 }
